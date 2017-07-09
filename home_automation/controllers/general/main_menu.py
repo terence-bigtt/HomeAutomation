@@ -1,8 +1,7 @@
-from jinja2 import Undefined
 class MenuItem(object):
-    def __init__(self, caption, href, target="_blank", id=0):
+    def __init__(self, caption, page, target="_blank", id=0):
         self.caption = caption
-        self.href = href
+        self.page = page
         self.target = target
         self.id = id
 
@@ -19,7 +18,7 @@ class Menu(object):
 
 
 def get_configured_menu():
-    item1 = MenuItem("Google", "http://www.google.com", id=1)
-    item2 = MenuItem("Home", "/", id=2, target="iframe")
+    item1 = MenuItem("Links", "general.links", id=1, target="include")
+    item2 = MenuItem("Home", "general.index", id=2, target="include")
     menu = Menu(item1, item2)
     return menu

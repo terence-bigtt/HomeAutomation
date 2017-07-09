@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome Home</title>
-
-    <script>
-        var menuAction=function(src, target, id){
-        console.log([src, target, id]);
-        if (target != "iframe"){
-        window.open(src, target);
-        }
-        else{
-        window.location.href="?iframe_href="+src;
-        }
-        };
-    </script>
+ <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -22,19 +11,13 @@
     <table style="width:100%" id="mainNavigation">
         <tr>
             {% for item in menu %}
-            {{item.target}}
-            <th>
-                <button onclick="menuAction('{{item.href}}', '{{item.target}}', '{{item.id}}')">{{item.caption}}</button>
-            </th>
+            <th ><a href = "{{url_for(item.page)}}")>{{item.caption}}</a></th>
             {%endfor%}
         </tr>
     </table>
 </div>
-{{iframe_href}}
-{%if iframe_href is defined %}
-<div id="mainContent" style="width:100%">
-    <iframe src="{{iframe_href}}" style="width:100%"></iframe>
-</div>
-{%endif%}
+
+{% block page %}
+{% endblock %}
 </body>
 </html>
