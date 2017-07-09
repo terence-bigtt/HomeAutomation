@@ -12,3 +12,4 @@ def index():
     filtered_args = {k: template_args.get(k) for k in template_args.keys() if template_args.get(k) is not None}
     return render_template('general/index.html', **filtered_args)
 
+
