@@ -30,7 +30,9 @@ class IpCamDevice(Device) :
     def run(self):
         capture_url = "http://" + self.ip + "/" + self.capture_path + "/" + self.capture_path
         headers = self.header()
-        req = requests.get(capture_url, params=self.payload, headers=headers)
+        params = {"headers": headers}
+        params = {k: v for k in params.keys() if params.get(k) is not None}
+        req = requests.get(capture_url, params=self.payload, **params)
         content = req.content
 
         return content
