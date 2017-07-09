@@ -13,8 +13,8 @@ class IpCamDevice(Device) :
         :param location: physical location
         :param device_id: unique identifier for the device
         :param ip: ip on the network
-        :param cam_user: user name for accessing the cam
-        :param cam_password: password for accessing the cam
+        :param cam_user: user name for accessing the monitoring
+        :param cam_password: password for accessing the monitoring
         :param capture_path: address to call for getting a snapshot
         :payload parameters to pass to the capture url
         """
@@ -26,7 +26,7 @@ class IpCamDevice(Device) :
         self.payload = payload
 
     def run(self):
-        capture_url = self.capture_path + "/" + self.capture_path
+        capture_url = "http://" + self.ip + "/" + self.capture_path + "/" + self.capture_path
         req = requests.get(capture_url, params=self.payload)
         content = req.content
         raw = req.raw
