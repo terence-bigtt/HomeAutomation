@@ -4,7 +4,6 @@ import requests
 import base64
 
 
-
 class IpCamDevice(Device) :
     def __init__(self, name, location, device_id=uuid.uuid4(), ip=None, cam_user=None, cam_password=None,
                  capture_path=None, payload=None, authentication = "BASIC"):
@@ -29,7 +28,7 @@ class IpCamDevice(Device) :
         self.authentication = authentication
 
     def run(self):
-        capture_url = self.capture_path + "/" + self.capture_path
+        capture_url = "http://" + self.ip + "/" + self.capture_path + "/" + self.capture_path
         headers = self.header()
         req = requests.get(capture_url, params=self.payload, headers=headers)
         content = req.content
