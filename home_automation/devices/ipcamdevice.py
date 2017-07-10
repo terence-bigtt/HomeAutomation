@@ -6,7 +6,7 @@ import base64
 
 class IpCamDevice(Device) :
     def __init__(self, name, location, device_id=uuid.uuid4(), ip=None, cam_user=None, cam_password=None,
-                 capture_path=None, payload=None, authentication = "BASIC"):
+                 capture_path=None, payload=None, authentication = None):
         """
         Driver for IpCam type devices.
         :param name: name of the device
@@ -29,9 +29,11 @@ class IpCamDevice(Device) :
 
     def run(self):
         capture_url = "http://" + self.ip + "/" + self.capture_path + "/" + self.capture_path
-        headers = self.header()
+        headers = None
+        if self.authentication is not None:
+            headers = self.header()
         params = {"headers": headers}
-        params = {k: v for k in params.keys() if params.get(k) is not None}
+        params = {k: params.get(k) for k in params.keys() if params.get(k) is not None}
         req = requests.get(capture_url, params=self.payload, **params)
         content = req.content
 

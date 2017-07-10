@@ -16,11 +16,10 @@ def index():
 
 @mod.route("/links")
 def links():
-    links = get_configured_links()
-    return render_template("general/links.html", links=links.links, menu=menu.items)
+    conf_links = get_configured_links()
+    return render_template("general/links.html", links=conf_links.links, menu=menu.items)
+
 
 @mod.route("/monitor")
 def monitor():
-    return render_template("general/cam_monitor.html", cams= cams)
-
-
+    return render_template("general/cam_monitor.html", cams=cams)
