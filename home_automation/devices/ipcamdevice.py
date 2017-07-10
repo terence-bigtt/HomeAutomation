@@ -41,5 +41,6 @@ class IpCamDevice(Device) :
 
     def header(self):
         if self.authentication == "BASIC":
-            return {"Authorization": "BASIC " + base64.b16encode(self.cam_user + ":" + self.cam_password)}
-
+            auth_string = (self.cam_user + ":" + self.cam_password).encode("utf-8")
+            b64_auth = base64.standard_b64encode(bytes(auth_string)).decode('utf-8')
+            return {"Authorization": "BASIC " + b64_auth}

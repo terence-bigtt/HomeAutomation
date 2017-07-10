@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, Response
+from flask import Blueprint, render_template, request
 from home_automation.controllers.general.main_menu import get_configured_menu
 from home_automation.controllers.general.links import get_configured_links
 from home_automation.controllers.monitoring.ipcam import get_configured_ip_cams
@@ -22,4 +22,4 @@ def links():
 
 @mod.route("/monitor")
 def monitor():
-    return render_template("general/cam_monitor.html", cams=cams)
+    return render_template("general/cam_monitor.html", menu = menu.items, cams= cams.values(), cam_ids=",".join(cams.keys()))

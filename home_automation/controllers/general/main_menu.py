@@ -18,7 +18,8 @@ class Menu(object):
 
 
 def get_configured_menu():
-    item1 = MenuItem("Links", "general.links", id=1, target="include")
-    item2 = MenuItem("Home", "general.index", id=2, target="include")
-    menu = Menu(item1, item2)
+    item1 = MenuItem("Home", "general.index", id=1, target="include")
+    item2 = MenuItem("Cam Monitor", "general.monitor", id=2, target = "include")
+    item3 = MenuItem("Links", "general.links", id=3, target="include")
+    menu = Menu(item1, item2, item3)
     return menu

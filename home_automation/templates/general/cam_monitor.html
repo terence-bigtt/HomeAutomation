@@ -1,9 +1,20 @@
 {% extends "general/index.html" %}
 
 {% block page %}
+<script>
+    const play = function(device_id){
+        console.log(device_id);
+        playing = device_id;
+        document.getElementById("video-"+device_id).src = "{{ url_for('monitoring.video_feed') }}?id="+device_id;
+    };
+
+    const stop = function(device_id){
+        document.getElementById("video-"+device_id).src = "{{ url_for('monitoring.video_preview') }}?id=" + device_id;
+    };
+</script>
 
 {% for cam in cams %}
 <p>{{cam.name}}</p>
-<img id="bg" src="{{ url_for('video_feed') }}?id={{ cam.device_id }}">
+<img id="video-{{ cam.device_id }}" onclick="play({{ cam.device_id }})" width="30%" src="{{ url_for('monitoring.video_preview') }}?id={{ cam.device_id }}">
 {% endfor %}
 {% endblock %}

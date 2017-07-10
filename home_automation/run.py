@@ -1,4 +1,4 @@
-from home_automation import app
+from home_automation import app, socketio
 
-if __name__ == '__main__' :
-    app.run()
+if __name__ == '__main__':
+    socketio.run(app)
