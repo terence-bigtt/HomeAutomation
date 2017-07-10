@@ -17,3 +17,4 @@ def video_feed(cam_id):
     return Response(stream(cam),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+
