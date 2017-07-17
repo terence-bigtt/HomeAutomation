@@ -1,4 +1,4 @@
-from flask import Blueprint, Response, request
+from flask import Blueprint, Response, request, send_file, url_for
 from home_automation.controllers.monitoring.ipcam import get_configured_ip_cams
 
 monitoring = Blueprint("monitoring", __name__)
@@ -16,12 +16,13 @@ def preview(camera) :
 @monitoring.route("/preview")
 def video_preview():
     cam_id = request.args.get("id")
-    cam = get_configured_ip_cams().get(cam_id)
+    cams = get_configured_ip_cams()
+    cam = filter(lambda c: c.device_id == cam_id,reduce(lambda c1, c2: c1 + c2 , cams, []))
+
     try:
         return Response(preview(cam))
     except Exception as e:
-        pass
-
+         return send_file("static/image/noimage.jpg", mimetype='image/jpg')
 
 @monitoring.route("/video_feed")
 def video_feed():
@@ -31,5 +32,5 @@ def video_feed():
         return Response(stream(cam),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
     except Exception as e:
-        pass
+         return send_file("static/image/noimage.jpg", mimetype='image/jpg')
 

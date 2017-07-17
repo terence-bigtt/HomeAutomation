@@ -22,7 +22,7 @@ def links():
 
 @mod.route("/monitor")
 def monitor():
-    return render_template("general/cam_monitor.html", menu=menu.items, cams=cams.values(), cam_ids=",".join(cams.keys()))
+    return render_template("general/cam_monitor.html", menu=menu.items, cams=cams)
 
 
 @mod.route("/config/menu")
