@@ -1,8 +1,51 @@
-th:nth-child(even){
-    background-color: #4CAF50;
-    color: white;
+body {
+    margin: 10;
+    padding: 0;
 }
 
-table{
-    width:100%
+#menu-container{
+    background-color:#101010;
+    color: aliceblue;
+    width: 100%;
+}
+
+#menu-top{
+    height: 50px;
+}
+
+div.inline{
+    display: inline;
+    padding : 10px;
+
+}
+
+#logo-main{
+    font-style: italic;
+    font-weight: bold;
+    font-size : 300%;
+}
+
+#logo-sub{
+    font-style: italic;
+    font-size: 150%
+}
+
+#login{
+    padding: 100px
+}
+
+#menu-navigation{
+    background-color : aliceblue;
+    border: 1px solid #101010
+}
+
+div.menu-item{
+    display: inline;
+    border-right: 1px solid #101010;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+a.menu-item{
+    color: #101010;
 }

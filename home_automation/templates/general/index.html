@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome Home</title>
- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div id="mainMenu" style="width:100%">
-    <table style="width:100%" id="mainNavigation">
-        <tr>
-            {% for item in menu %}
-            <th ><a href = "{{url_for(item.page)}}")>{{item.caption}}</a></th>
-            {%endfor%}
-        </tr>
-    </table>
+<div id="menu-container">
+    <div id="menu-top">
+        <div id="logo-main" class="inline">
+            @Home...
+        </div>
+        <div id="logo-sub" class="inline">
+            Welcome Home
+        </div>
+        <div id="login" class="inline">
+        Log in
+    </div>
+    </div>
+
+    <div id="menu-navigation">
+        {% for item in menu %}
+        <div class="menu-item">
+            <a class="menu-item" href="{{url_for(item.page)}}" )>{{item.caption}}</a>
+        </div>
+        {%endfor%}
+    </div>
 </div>
+
 
 {% block page %}
 {% endblock %}
