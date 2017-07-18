@@ -51,12 +51,13 @@ a.menu-item{
     color: #101010;
 }
 
-
+#main-content{
+    padding-top:20px;
+}
 /*******************************************/
 
 .monitor-cams{
     width: 100%;
-    /*margin: 0 auto;*/
     text-align: center;
 }
 
@@ -66,9 +67,9 @@ a.menu-item{
 
 div.monitor-cam{
     text-align: left;
-
 }
+
 img.monitor-cam{
-    width: 100%;
+    border: 1px solid #101010;
 }
 

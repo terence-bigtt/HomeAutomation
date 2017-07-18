@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Welcome Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block header %}
+    {% endblock %}
 </head>
 <body>
 
@@ -16,8 +18,8 @@
             Welcome Home
         </div>
         <div id="login" class="inline">
-        Log in
-    </div>
+            Log in
+        </div>
     </div>
 
     <div id="menu-navigation">
@@ -29,8 +31,9 @@
     </div>
 </div>
 
-
-{% block page %}
-{% endblock %}
+<div id="main-content">
+    {% block page %}
+    {% endblock %}
+</div>
 </body>
 </html>
