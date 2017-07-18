@@ -21,8 +21,6 @@ def video_preview():
     cams = get_configured_ip_cams()
     cam = filter(lambda c: c.device_id == cam_id, reduce(lambda c1, c2: c1 + c2, cams, []))
 
-    return send_file("static/image/noimage.jpg", mimetype='image/jpg')
-
     try:
         return Response(preview(cam[0]))
     except Exception as e:
