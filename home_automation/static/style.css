@@ -69,7 +69,12 @@ div.monitor-cam{
     text-align: left;
 }
 
+div.monitor-cam-ctrl{
+    text-align: center;
+}
+
 img.monitor-cam{
     border: 1px solid #101010;
+    width:100%;
 }
 
