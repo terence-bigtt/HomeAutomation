@@ -3,9 +3,6 @@
 
 {% block header%}
 <script>
-    var camStates = {}
-
-
 
     const play = function(device_id){
         camStates['device_id'] = "playing"
@@ -14,8 +11,11 @@
     };
 
     const pause = function(device_id){
-        camStates['device_id'] = "paused"
         document.getElementById("video-"+device_id).src = "{{ url_for('monitoring.video_preview') }}?id=" + device_id;
+    };
+
+    const openCam = function(deviceId){
+        window.open("{{url_for('general.monitor')}}"+"?id="+deviceId);
     };
 
 </script>
@@ -27,10 +27,13 @@
     {% for h_cams in cams %}
     <div class="monitor-cams">
         {% for cam in h_cams %}
-        <div class="monitor-cam-group" style="width:{{100/(h_cams|length)/1.2}}%">
+        <div class="monitor-cam-group" style="width:{{100/(h_cams|length)/1.2}}%; height: 100%;">
             <div class="monitor-cam">{{cam.name}}</div>
-            <img class="monitor-cam" id="video-{{ cam.device_id }}"
-                 src="{{ url_for('monitoring.video_preview') }}?id={{ cam.device_id }}">
+            <div class="monitor-cam">
+                <img class="monitor-cam-view" id="video-{{ cam.device_id }}"
+                     src="{{ url_for('monitoring.video_preview') }}?id={{ cam.device_id }}"
+                     onclick="openCam({{cam.device_id}})">
+            </div>
             <div class=" monitor-cam-ctrl">
                 <button onclick="play({{ cam.device_id }})">Play</button>
                 <button onclick="pause({{ cam.device_id }})">Pause</button>

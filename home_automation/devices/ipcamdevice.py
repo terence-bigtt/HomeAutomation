@@ -6,7 +6,7 @@ import base64
 
 class IpCamDevice(Device) :
     def __init__(self, name, location, device_id=uuid.uuid4(), ip=None, cam_user=None, cam_password=None,
-                 capture_path=None, payload=None, authentication = None):
+                 capture_path=None, payload=None, authentication = None, cam_ctrl=None):
         """
         Driver for IpCam type devices.
         :param name: name of the device
@@ -18,6 +18,7 @@ class IpCamDevice(Device) :
         :param capture_path: address to call for getting a snapshot
         :param payload parameters to pass to the capture url
         :param authentication : type of authentication
+        :param cam_ctrl: dict of name -> route such that ip/route is called for actions on cam
         """
         Device.__init__(self, name, "ipcam", location, device_id)
         self.ip = ip
@@ -26,6 +27,7 @@ class IpCamDevice(Device) :
         self.capture_path = capture_path
         self.payload = payload
         self.authentication = authentication
+        self.cam_ctrl = cam_ctrl
 
     def run(self):
         capture_url = "http://" + self.ip + "/" + self.capture_path + "/" + self.capture_path
